@@ -1,22 +1,22 @@
 
-import { useState } from 'react'
+import { Login, getAccessToken } from './tokenApiModule'
+import Search from './Search';
 
 function Body () {
 
-    const [ song, setSong ] = useState('');
-
-
+    //PARTE DEL OPERADOR TERNARIO
+    const access_token = getAccessToken();
 
     return (
-        <form>
-            <label for='song'>Aquí debajo busca tu musica fav</label>
-            <input 
-            name='song'
-            type='text'
-            id='song'
-            />
-            <button type='submit' >Buscar</button>
-        </form>
+
+        <>
+        <h2>Ingresa en tu cuenta de spotify para poder buscar y crear tu propia playList!</h2>
+
+        {!access_token ? <Login /> :
+        
+        <Search />
+        }
+        </>
     )
 }
 
